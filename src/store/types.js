@@ -1,0 +1,14 @@
+// 用户信息
+export const USERINFO_UPDATE = 'USERINFO_UPDATE'
+export const USERINFO_RESET = 'USERINFO_RESET'
+export const USERINFO_INIT = 'USERINFO_INIT'
+export const USERINFO_ACTION_UPDATE = 'USERINFO_ACTION_UPDATE'
+
+// 设备相关
+export const DEVICEINFO_UPDATE = 'DEVICEINFO_UPDATE'
+
+// 路由缓存管理
+export const ROUTE_UPDATE = 'ROUTE_UPDATE'
+
+export const ROUTE_PUSH = 'ROUTE_PUSH'
+export const ROUTE_POP = 'ROUTE_POP'

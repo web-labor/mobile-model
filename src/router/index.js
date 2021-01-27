@@ -1,30 +1,32 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(Router)
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
+const getPageConfig = () => {
+    const routes = [
+        // 自定义
+    ]
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
-});
+    // 动态引入pages 必须是Page结尾的路由名称
+    const pageModule = require.context('./pages', true, /\Pages.js$/)
+    pageModule.keys().forEach(key => {
+        routes.push(...pageModule(key).default)
+    })
+    return routes
+}
 
-export default router;
+const routers = new Router({
+    mode: 'hash',
+    routes: [
+        /** ************************* 首页及其相关页路由 ***************************************** **/
+        { path: '/', redirect: '/home' },
+        ...getPageConfig()
+    ]
+})
+
+routers.beforeEach(async (to, from, next) => {
+    next()
+})
+
+export default routers
