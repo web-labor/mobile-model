@@ -19,7 +19,7 @@ const resError = res => {
         window.location.href = res.data.data
         return
     }
-    Toast(res.data.error || '网络超时')
+    Toast(res.data.error || res.data.message || '网络超时')
 }
 
 const errorHandle = error => {

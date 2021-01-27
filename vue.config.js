@@ -1,5 +1,5 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const projectName = require('./package.json').name
+const { name: projectName, zh_name: zh_projectName } = require('./package.json')
 const en = 'local'
 const envir = {
     local: 'http://172.20.200.84:10405/',
@@ -38,5 +38,12 @@ module.exports = {
                 })
             )
         }
-    }
+    },
+    chainWebpack: config =>{
+        config.plugin('html')
+          .tap(args => {
+            args[0].title = zh_projectName
+            return args
+          })
+      },
 }
