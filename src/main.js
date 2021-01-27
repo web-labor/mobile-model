@@ -12,7 +12,7 @@ import * as types from '@/store/types'
 import Msg from './service/message.service'
 import { getHashParameters } from '@/service/utils.service'
 import '@/components/install'
-import 'normalize.css'
+import 'normalize.css/normalize.css'
 
 const hashQuery = location.hash.slice(location.hash.indexOf('?'))
 if (!$native.isApp && hashQuery.indexOf('from=wait') !== -1) {
