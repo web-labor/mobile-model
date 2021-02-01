@@ -9,6 +9,5 @@ export const DEVICEINFO_UPDATE = 'DEVICEINFO_UPDATE'
 
 // 路由缓存管理
 export const ROUTE_UPDATE = 'ROUTE_UPDATE'
-
 export const ROUTE_PUSH = 'ROUTE_PUSH'
 export const ROUTE_POP = 'ROUTE_POP'

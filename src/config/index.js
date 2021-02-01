@@ -8,6 +8,10 @@
 
 import REG from './reg'
 import SELECT from './select'
+const {
+    zh_name: PROJECT_NAME_ZHCN,
+    name: PROJECT_NAME_EN
+} = require('../../package.json')
 
 const getOrigin = () => {
     let origin = window.location.origin
@@ -24,6 +28,10 @@ const getOrigin = () => {
 const config = {
     BASE_URL: getOrigin(),
     ORIGIN: getOrigin(),
+    // 项目中文名称
+    PROJECT_NAME_ZHCN,
+    // 项目英文名称
+    PROJECT_NAME_EN,
     // 是否开启vconsole
     V_CONSOLE: false,
     // vconsole 路径

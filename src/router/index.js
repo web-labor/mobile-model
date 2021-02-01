@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { beforeRouter, addRoutePrefix, cacheRouteHis } from './utils'
+import wrapper from './wrapper'
 
 Vue.use(Router)
 
-const getPageConfig = () => {
+const getPageConfig = (prefix = 'app') => {
     const routes = [
         // 自定义
     ]
@@ -13,6 +15,7 @@ const getPageConfig = () => {
     pageModule.keys().forEach(key => {
         routes.push(...pageModule(key).default)
     })
+    addRoutePrefix(routes, prefix)
     return routes
 }
 
@@ -26,7 +29,8 @@ const routers = new Router({
 })
 
 routers.beforeEach(async (to, from, next) => {
-    next()
+    cacheRouteHis(to, from)
+    beforeRouter(to, from, next)
 })
 
-export default routers
+export default wrapper(routers)
