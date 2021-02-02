@@ -10,61 +10,9 @@
 import { isFormData } from '@/service/utils.service'
 import errorHandle from './errorHandle'
 import store from '@/store'
-// import Axios from 'axios';
 
+// 配置不需要统一错误处理的方法名
 const NO_ERROR_HANDLER = [{ method: 'exportReportDetail' }]
-
-// const CancelToken = Axios.CancelToken
-// 存放正在请求中的请求
-let reqQueue = []
-
-/**
- * @desc 拦截处理请求
- * @param {*} config 请求对象
- */
-function handleReq(
-    config = {
-        url: '',
-        method: '',
-        data: '',
-        params: ''
-    }
-) {
-    const { url, method, data, params } = config
-    const strData = JSON.stringify(data)
-    const strParams = JSON.stringify(params)
-    const reqPending = reqQueue.some(
-        v =>
-            v.url === url &&
-            v.method === method &&
-            v.data === strData &&
-            v.params === strParams
-    )
-    if (reqPending) {
-        console.log(reqPending)
-        // config.cancelToken = new CancelToken(v => v(`重复请求拦截: ${url} + ${method} + ${strData} + ${strParams}`))
-    } else {
-        reqQueue.push({
-            url,
-            method,
-            params: strParams,
-            data: strData
-        })
-    }
-}
-
-function handleRes(config) {
-    const { url, method, data, params } = config
-    reqQueue = reqQueue.filter(
-        v =>
-            !(
-                v.url === url &&
-                v.method === method &&
-                JSON.stringify(v.data) === data &&
-                JSON.stringify(v.params) === params
-            )
-    )
-}
 
 /**
  *
@@ -113,7 +61,6 @@ const reqestHandle = config => {
     if (Array.isArray(params)) {
         config[paramKey] = params
     }
-    handleReq(config)
     return config
 }
 
@@ -129,7 +76,6 @@ const responseHandle = res => {
         }
         return res
     }
-    handleRes(res.config)
     const newRes = Object.assign({}, res, {
         data: res.data.responseBody
     })

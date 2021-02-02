@@ -5,8 +5,7 @@ const routeStack = []
 const mutations = {
     [types.ROUTE_PUSH](state, payload) {
         state.push({
-            ...payload,
-            key: `${payload.name}_${new Date().getTime()}`
+            ...payload
         })
     },
     [types.ROUTE_POP](state) {

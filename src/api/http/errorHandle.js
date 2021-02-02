@@ -32,7 +32,7 @@ const errorHandle = error => {
         case 500:
             return Promise.reject(StatusMap.status_500)
         default:
-            console.log(StatusMap.default)
+            Promise.reject(StatusMap.default)
     }
 
     if (error.response && error.response.data && error.response.data.error) {

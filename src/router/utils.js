@@ -63,7 +63,8 @@ export const cacheRouteHis = (to, from) => {
         name: to.name,
         meta: {
             ...to.meta
-        }
+        },
+        key: `${to.name}_${to.query._t}`
     }
     store.commit(`routeHistory/${types.ROUTE_PUSH}`, save)
 }

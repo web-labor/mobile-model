@@ -14,13 +14,6 @@ import { getHashParameters } from '@/service/utils.service'
 import '@/components/install'
 import 'normalize.css/normalize.css'
 
-const hashQuery = location.hash.slice(location.hash.indexOf('?'))
-if (!$native.isApp && hashQuery.indexOf('from=wait') !== -1) {
-    window.location.replace(
-        `${location.origin}/teamwork-web/${location.search}#/matterDetail${hashQuery}`
-    )
-}
-
 Vue.config.productionTip = false
 
 // 判断是否开启vconsole
@@ -28,6 +21,7 @@ if (config.V_CONSOLE && process.env.NODE_ENV === 'development') {
     addVonsole()
 }
 
+// 禁止WebView反弹（仅iOS）
 $native.call('setBounce', {
     enable: 0
 })
@@ -49,6 +43,7 @@ searchArr.forEach(v => {
 store.commit(`userInfo/${types.USERINFO_UPDATE}`, query)
 store.dispatch(`userInfo/${types.USERINFO_ACTION_UPDATE}`, query)
 
+// 获取ticket 和 appid
 const hashParams = getHashParameters()
 if (hashParams.ticket) {
     store.commit(`userInfo/${types.USERINFO_UPDATE}`, {

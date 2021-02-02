@@ -1,8 +1,7 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const { name: projectName, zh_name: zh_projectName } = require('./package.json')
-const en = 'local'
+const en = dev
 const envir = {
-    local: 'http://172.20.200.84:10405/',
     dev: 'https://dev.kdweibo.cn',
     pro: 'https://jsy.baiyyy.com',
     devpro: 'https://kdtest.kdweibo.cn'
@@ -17,7 +16,7 @@ module.exports = {
         proxy: {
             // 文件上传服务
             '/docrest': {
-                target: 'https://dev.kdweibo.cn',
+                target: src,
                 changeOrigin: true
             },
             '/journal-service': {

@@ -6,6 +6,9 @@ export default {
     name: 'Home',
     data() {
         return {}
+    },
+    created() {
+        console.log('home')
     }
 }
 </script>

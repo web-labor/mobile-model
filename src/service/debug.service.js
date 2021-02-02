@@ -17,7 +17,6 @@ import config from '@/config'
 export const addVonsole = () => {
     addScript(config.V_CONSOLE_URL, () => {
         console.log('初始化vconsole')
-        // eslint-disable-next-line
-    const vConsole = new window.VConsole()
+        new window.VConsole()
     })
 }

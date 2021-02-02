@@ -128,7 +128,6 @@ export const throttle = (fn, delay = 300) => {
 
 export const debounce = (fn, wait) => {
     let timeout = null
-    console.log(timeout)
     return function(...args) {
         if (timeout) clearTimeout(timeout)
         const callNow = !timeout

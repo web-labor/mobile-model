@@ -1,29 +1,9 @@
-# electonic-jounal-mobile
+# mobile-model 移动端脚手架
 
-## Project setup
-```
-yarn install
-```
+✅ 路由，回退缓存
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+✅ 路由，重写router.push，加入原生跳转能力 `router.query.webview`  true为原生跳转
 
-### Compiles and minifies for production
-```
-yarn build
-```
+✅ httpProxy 针对多个重复get请求只返回一种结果
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+❌ 全局主题色改变

@@ -1,3 +1,6 @@
+/**
+ * @desc 缓存组件，keepalive
+ */
 import { mapGetters } from 'vuex'
 
 export default {
@@ -15,8 +18,10 @@ export default {
             return this.vnodeCache.get(key)
         }
         const vnode = defaultSlot ? this.$slots.default[0] : ''
-        this.vnodeCache.set(key, vnode)
-        console.log(key, vnode)
+        if (`${this.$route?.name}_${this.$route?.query?._t}` === key) {
+            vnode.data.keepAlive = true
+            this.vnodeCache.set(key, vnode)
+        }
         return vnode
     },
     computed: {
