@@ -4,6 +4,7 @@
  * @LastAuthor wangbo
  * @CreatedTime 2020-12-14 17:13:28
  * @LastModifyTime 2020-12-29 14:36:24
+ * @desc loading 服务
  */
 import WLoading from './WLoading.vue'
 import Vue from 'vue'
@@ -16,15 +17,27 @@ const defaults = {
 }
 
 let loading = false
+let loadingCount = 0
 
 LoadingConstructor.prototype.hide = function() {
-    loading = false
-    this.$el.hide()
+    loadingCount--
+    if (loadingCount > 0) {
+        return
+    }
+    if (this.close) {
+        this.close()
+        loading = false
+    }
 }
 
 LoadingConstructor.prototype.show = function() {
-    loading = true
-    this.$el.show()
+    loadingCount++
+    if (loadingCount > 1) {
+        return
+    }
+    if (this.open) {
+        this.open()
+    }
 }
 
 const Loading = (options = {}) => {
@@ -37,7 +50,7 @@ const Loading = (options = {}) => {
     if (options.target === document.body) {
         options.body = true
     }
-    if (loading) {
+    if (loading.isShow) {
         return loading
     }
 
@@ -50,9 +63,6 @@ const Loading = (options = {}) => {
 
     // 直接添加元素
     parent.appendChild(instance.$el)
-    Vue.nextTick(() => {
-        instance.isShow = true
-    })
     loading = instance
     return instance
 }

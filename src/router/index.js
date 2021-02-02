@@ -23,14 +23,14 @@ const routers = new Router({
     mode: 'hash',
     routes: [
         /** ************************* 首页及其相关页路由 ***************************************** **/
-        { path: '/', redirect: '/home' },
+        { path: '/', redirect: '/app/home' },
         ...getPageConfig()
     ]
 })
 
-routers.beforeEach(async (to, from, next) => {
-    cacheRouteHis(to, from)
+routers.beforeEach((to, from, next) => {
     beforeRouter(to, from, next)
+    cacheRouteHis(to, from)
 })
 
 export default wrapper(routers)

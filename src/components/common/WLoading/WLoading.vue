@@ -21,11 +21,11 @@ export default {
         }
     },
     methods: {
-        show() {
+        open() {
             this.isShow = true
         },
 
-        hide() {
+        close() {
             this.isShow = false
         }
     }

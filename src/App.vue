@@ -1,12 +1,22 @@
 <template>
     <div id="app">
-        <router-view />
+        <w-keep-alive>
+            <router-view />
+        </w-keep-alive>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import WKeepAlive from '@/components/common/WKeepAlive'
 export default {
-    name: 'app'
+    name: 'app',
+    components: {
+        WKeepAlive
+    },
+    created() {
+        console.log(Vue.prototype)
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -60,6 +60,12 @@ export default function(fn) {
      */
     fn.push = (...params) => {
         const argu = params['0']
+        if (!argu?.query?._t) {
+            argu.query = {
+                ...(argu.query || {}),
+                _t: new Date().getTime().toString()
+            }
+        }
         argu.name = `app_${argu.name}`
         // 如果为原生环境 并且 query.webview 为 true  则重新打开webview
         if (WRAPPER_CONFIG.IS_APP && argu?.query?.webview) {

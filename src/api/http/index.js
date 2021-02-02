@@ -9,6 +9,7 @@
 import axios from 'axios'
 import httpConfig from './httpConfig'
 import httpInterceptors from './httpInterceptors'
+import httpProxy from './httpProxy'
 
 const api = axios.create(httpConfig)
 Object.keys(httpInterceptors).forEach(key => {
@@ -18,4 +19,4 @@ Object.keys(httpInterceptors).forEach(key => {
     }
     api.interceptors[key].use(...interceptor)
 })
-export default api
+export default httpProxy(api)

@@ -37,14 +37,24 @@ export const beforeRouter = (to, from, next) => {
     } else {
         $native.hideNativeHeader()
     }
-    next()
+    if (to.query._t) {
+        next()
+    } else {
+        to.query._t = new Date().getTime().toString()
+        next(to)
+    }
 }
 
 /**
  * @desc 缓存路由，通过fullpath来判断是go还是push
  */
 export const cacheRouteHis = (to, from) => {
-    const hisR = store.state.routeHistory
+    const type =
+        !from.query._t || to.query._t - from.query._t > 0 ? 'push' : 'pop'
+    if (type === 'pop') {
+        store.commit(`routeHistory/${types.ROUTE_POP}`, save)
+        return
+    }
     const save = {
         query: {
             ...to.query
@@ -55,24 +65,7 @@ export const cacheRouteHis = (to, from) => {
             ...to.meta
         }
     }
-    const len = hisR.length
-    if (len === 0) {
-        store.commit(`routeHistory/${types.ROUTE_PUSH}`, save)
-    } else if (len === 1) {
-        const last = hisR[len - 1]
-        if (last.fullPath !== to.fullPath) {
-            store.commit(`routeHistory/${types.ROUTE_PUSH}`, save)
-        }
-    } else {
-        if (
-            to.fullPath === hisR[len - 2].fullPath &&
-            from.fullPath === hisR[len - 1].fullPath
-        ) {
-            store.commit(`routeHistory/${types.ROUTE_POP}`)
-        } else {
-            store.commit(`routeHistory/${types.ROUTE_PUSH}`, save)
-        }
-    }
+    store.commit(`routeHistory/${types.ROUTE_PUSH}`, save)
 }
 
 /**
