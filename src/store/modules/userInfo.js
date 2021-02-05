@@ -34,7 +34,7 @@ const actions = {
         // 请求
         const {
             data: { data }
-        } = await api.getUserInfo(payload)
+        } = await api.common.getUserInfo(payload)
         commit(types.USERINFO_UPDATE, data)
     }
 }

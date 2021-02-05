@@ -1,9 +1,9 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const { name: projectName, zh_name: zh_projectName } = require('./package.json')
-const en = dev
+const en = 'dev'
 const envir = {
     dev: 'https://dev.kdweibo.cn',
-    pro: 'https://jsy.baiyyy.com',
+    pro: 'https://www.yunzhijia.com',
     devpro: 'https://kdtest.kdweibo.cn'
 }
 const src = envir[en]

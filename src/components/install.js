@@ -9,7 +9,7 @@
 
 import Vue from 'vue'
 
-const InstallModuleList = require.context('./', true, /(\/install.ts$)/)
+const InstallModuleList = require.context('./', true, /(\/install.js$)/)
 
 InstallModuleList.keys()
     .filter(v => v !== './install.js')
