@@ -11,11 +11,16 @@ import WLoading from '@/components/common/WLoading/service'
 /**
  * @description 请求loading 装饰
  */
-export const withLoading = message => {
+export const withLoading = (
+    options = {
+        message: '',
+        type: ''
+    }
+) => {
     return function(target, name, descriptor) {
         const originFunc = descriptor.value
         descriptor.value = async function(...args) {
-            let loading = WLoading(message)
+            let loading = WLoading(options)
             loading.show()
             let res = null
             try {
