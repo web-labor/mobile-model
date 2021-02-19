@@ -7,16 +7,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import WKeepAlive from '@/components/common/WKeepAlive'
 export default {
     name: 'app',
     components: {
         WKeepAlive
     },
-    created() {
-        console.log(Vue.prototype)
-    }
+    created() {}
 }
 </script>
 <style lang="scss" scoped>

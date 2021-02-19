@@ -60,7 +60,6 @@ const Loading = (options = {}) => {
         el: document.createElement('div'),
         data: options
     })
-
     // 直接添加元素
     parent.appendChild(instance.$el)
     loading = instance
