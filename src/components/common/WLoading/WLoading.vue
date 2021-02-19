@@ -2,10 +2,14 @@
     <transition name="el-fade-in">
         <div class="w-loading-wrapper" v-show="isShow">
             <van-loading
-                class="w-loading"
+                v-if="type === 'spinner'"
                 color="rgba(0, 145, 255, 1)"
                 type="spinner"
-            />
+                vertical
+            >
+                {{ message }}
+            </van-loading>
+            <div class="w-loading" v-if="type === 'ripple'"></div>
         </div>
     </transition>
 </template>
@@ -17,7 +21,19 @@ export default {
             message: '',
             duration: 3000,
             isShow: false,
-            timeout: null
+            timeout: null,
+            type: ''
+        }
+    },
+    props: {
+        wtype: {
+            type: String,
+            default: 'spinner'
+        }
+    },
+    created() {
+        if (!this.type) {
+            this.type = this.wtype
         }
     },
     methods: {
@@ -45,5 +61,19 @@ export default {
     justify-content: center;
     background: transparent;
     z-index: 999;
+    .w-loading {
+        width: 50px;
+        height: 50px;
+        transform: scale(0);
+        border-radius: 50%;
+        animation: ripple 0.6s ease-out infinite;
+        background-color: #409eff;
+    }
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
 }
 </style>
