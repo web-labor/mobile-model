@@ -91,7 +91,7 @@
 
 ```
 
-✅ 路由，回退缓存
+✅ 路由，回退缓存 ( 如果某些页面不需要缓存，路由配置 meta: { noKeepAlive: true } )
 
 ✅ 路由，重写router.push，加入原生跳转能力 `router.query.webview`  true为原生跳转
 
