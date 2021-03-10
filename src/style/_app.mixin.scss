@@ -9,11 +9,11 @@
 	max-width: $width;
 }
 @mixin page () {
-	font-size: calculate(26);
+	font-size: 13px;
 	color: rgba(255,255,255,0.7);
 }
 @mixin head () {
-	height: calculate(88);
+	height: 44px;
 	width: 100%;
 	background-color: $app-l-main;
 }
@@ -22,9 +22,9 @@
 	overflow-x: hidden;
 	-webkit-overflow-scrolling:touch;
 }
-@mixin gap ($width: 32) {
+@mixin gap ($width: 32px) {
 	box-sizing: border-box;
-	padding: 0 calculate($width);
+	padding: 0 $width;
 }
 @mixin mask{
 	position: absolute;
@@ -46,16 +46,16 @@
 		height: 1px;
 		background-color: $color;
 	}
-	// @media screen and (-webkit-min-device-pixel-ratio: 3) {
-	// 	&:after{
-	// 		 transform: scaleY(0.33)
-	// 	}
-	// }
-	// @media screen and (-webkit-min-device-pixel-ratio: 2) {
-	// 	&:after{
-	// 		 transform: scaleY(0.5)
-	// 	}
-	// }
+	@media screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:after{
+			 transform: scaleY(0.33)
+		}
+	}
+	@media screen and (-webkit-min-device-pixel-ratio: 2) {
+		&:after{
+			 transform: scaleY(0.5)
+		}
+	}
 }
 @mixin borderLeft ($color: #ebedf0) {
 	position: relative;
@@ -79,7 +79,7 @@
 		}
 	}
 }
-@mixin borderRight ($color: rgba(255,255,255,0.4)) {
+@mixin borderRight ($color: #ebedf0) {
 	position: relative;
 	&:after{
 		content: '';
@@ -114,16 +114,16 @@
 		height: 1px;
 		background-color: $color;
 	}
-	// @media screen and (-webkit-min-device-pixel-ratio: 3) {
-	// 	&:after{
-	// 		 transform: scaleY(0.33)
-	// 	}
-	// }
-	// @media screen and (-webkit-min-device-pixel-ratio: 2) {
-	// 	&:after{
-	// 		 transform: scaleY(0.5)
-	// 	}
-	// }
+	@media screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:after{
+			 transform: scaleY(0.33)
+		}
+	}
+	@media screen and (-webkit-min-device-pixel-ratio: 2) {
+		&:after{
+			 transform: scaleY(0.5)
+		}
+	}
 }
 
 @mixin hiddenScrollBar () {
@@ -134,15 +134,16 @@
 
 @mixin omitSingLine () {
 	overflow: hidden;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
+/*
+	多行省略号
+*/
 @mixin omitMultiLine ($line) {
 	display: -webkit-box;
-	/*! autoprefixer: off */
   -webkit-box-orient: vertical;
- 	/* autoprefixer: on */
 	-webkit-line-clamp: $line;
 	overflow: hidden;
 }
@@ -155,12 +156,12 @@
 @mixin fillBtn{
 	display: block;
 	width: 91.4%;
-	height: calculate(88);
-	line-height: calculate(88);
-	margin: calculate(64) auto;
+	height: 44px;
+	line-height: 44px;
+	margin: 32px auto;
 	background-color: $app-basecolor;
 	color: #FFF;
-	font-size: calculate(32);
+	font-size: 16px;
 	text-align: center;
 	@include fontBolder;
 }
@@ -174,21 +175,21 @@
 
 @mixin card($color: $app-l-main) {
 	background: $color;
-	border-radius: calculate(20);
+	border-radius: 10px;
 }
 
-@mixin desc($font-size: calculate(24)) {
+@mixin desc($font-size: 12px) {
 	font-size: $font-size;
 	color: $app-desc;
   font-weight: 400;
-  line-height: calculate(33);
+  line-height: 16px;
 }
 
 @mixin font($font-family: PingFangSC-Regular) {
 	font-family: $font-family,  -apple-system, sans-serif;
 }
 
-@mixin title($font-size: calculate(26)) {
+@mixin title($font-size: 13px) {
 	font-size: $font-size;
 	font-weight: 400;
 	color: $app-main;

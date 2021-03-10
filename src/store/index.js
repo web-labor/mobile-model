@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import local from './plugins/local'
-import userInfo from './modules/userInfo'
-import deviceInfo from './modules/deviceInfo'
-import routeHistory from './modules/routeHistory'
 
 Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
+const modules = []
+const modulesList = require.context('./modules', false, /\.js$/)
+modulesList.keys().forEach(key => {
+    const name = key.replace(/\.\/([a-zA-Z]+)\.js/, '$1')
+    modules[name] = modulesList(key).default
+})
+
 export default new Vuex.Store({
-    modules: {
-        userInfo,
-        deviceInfo,
-        routeHistory
-    },
+    modules,
     plugins: [local],
     strict: debug
 })

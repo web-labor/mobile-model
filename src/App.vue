@@ -24,13 +24,14 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    background: #f8f9fb;
     @include font;
 }
 
-// 按钮回显
-.echoes {
-    &:active {
-        opacity: 0.7;
-    }
+</style>
+<style>
+/* 按钮回显 */
+.echoes:active {
+    opacity: 0.7;
 }
 </style>

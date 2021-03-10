@@ -18,7 +18,10 @@ export default {
             return this.vnodeCache.get(key)
         }
         const vnode = defaultSlot ? this.$slots.default[0] : ''
-        if (`${this.$route?.name}_${this.$route?.query?._t}` === key) {
+        if (
+            `${this.$route?.name}_${this.$route?.query?._t}` === key &&
+            !this.$route?.meta?.noKeppAlive
+        ) {
             vnode.data.keepAlive = true
             this.vnodeCache.set(key, vnode)
         }
