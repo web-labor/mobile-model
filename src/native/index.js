@@ -7,13 +7,13 @@
  * @desc 统一将原生能力写在这里
  */
 
-const native = window.qing
+const native = window.qing || {}
 
 class Native {
     isApp
     isAndroid
     constructor() {
-        this.isApp = native.isSupportNativeJsBridge
+        this.isApp = !!native?.isSupportNativeJsBridge
         this.isAndroid =
             native.isAndroid || native.isAndroidPhone || native.isAndroidTable
     }

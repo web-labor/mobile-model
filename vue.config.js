@@ -52,34 +52,36 @@ module.exports = {
             args[0].title = zh_projectName
             return args
         })
-        config.optimization.splitChunks({
-            cacheGroups: {
-              common: {
-                name: 'chunk-common', // 打包后的文件名
-                chunks: 'initial', //
-                minChunks: 2,
-                maxInitialRequests: 5,
-                minSize: 0,
-                priority: 1,
-                reuseExistingChunk: true
-              },
-              vendors: {
-                name: 'chunk-vendors',
-                test: /[\\/]node_modules[\\/]/,
-                chunks: 'initial',
-                priority: 2,
-                reuseExistingChunk: true,
-                enforce: true
-              },
-              elementUI: {
-                name: 'chunk-vant-ui-vue',
-                test: /[\\/]node_modules[\\/]vant[\\/]/,
-                chunks: 'initial',
-                priority: 3,
-                reuseExistingChunk: true,
-                enforce: true
-              }
-            }
-          })
+        if (process.env.NODE_ENV !== 'test') {
+            config.optimization.splitChunks({
+                cacheGroups: {
+                  common: {
+                    name: 'chunk-common', // 打包后的文件名
+                    chunks: 'initial', //
+                    minChunks: 2,
+                    maxInitialRequests: 5,
+                    minSize: 0,
+                    priority: 1,
+                    reuseExistingChunk: true
+                  },
+                  vendors: {
+                    name: 'chunk-vendors',
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'initial',
+                    priority: 2,
+                    reuseExistingChunk: true,
+                    enforce: true
+                  },
+                  elementUI: {
+                    name: 'chunk-vant-ui-vue',
+                    test: /[\\/]node_modules[\\/]vant[\\/]/,
+                    chunks: 'initial',
+                    priority: 3,
+                    reuseExistingChunk: true,
+                    enforce: true
+                  }
+                }
+            })
+        }
     }
 }
