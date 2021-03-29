@@ -162,6 +162,10 @@ class Native {
             urlParam
         })
     }
+
+    closePop() {
+        native.call('closePop')
+    }
 }
 
 const $native = new Native()

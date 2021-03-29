@@ -80,7 +80,7 @@ export default function(fn) {
      * @method go
      */
     fn.go = (...params) => {
-        if (store.state.routeHistory.length === 0) {
+        if (store.state.routeHistory.length === 1) {
             $native.closeWebview()
             return
         }
