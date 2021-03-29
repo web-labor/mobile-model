@@ -26,6 +26,7 @@ const initNativeSetting = () => {
         },
         success: null
     })
+    $native.closePop()
 }
 
 export const beforeRouter = (to, from, next) => {
