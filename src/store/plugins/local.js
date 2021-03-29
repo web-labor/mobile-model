@@ -7,7 +7,7 @@ export default store => {
         const dd = `${config.PROJECT_NAME_EN}-vuex-${d}`
         const res = window.localStorage.getItem(dd)
         if (res) {
-            store.commit(tt, JSON.parse(res))
+            store.commit(tt, JSON.parse(unescape(res)))
         }
     })
     store.subscribe((mutation, state) => {
@@ -16,7 +16,7 @@ export default store => {
             const tt = `${d}/`
             const dd = `${config.PROJECT_NAME_EN}-vuex-${d}`
             if (type.indexOf(tt) !== -1) {
-                window.localStorage.setItem(dd, JSON.stringify(state[d]))
+                window.localStorage.setItem(dd, escape(JSON.stringify(state[d])))
             }
         })
     })

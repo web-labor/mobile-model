@@ -29,5 +29,8 @@ export default {
     },
     computed: {
         ...mapGetters({ currentRoute: 'routeHistory/currentRoute' })
+    },
+    destroyed() {
+        this.vnodeCache = null
     }
 }

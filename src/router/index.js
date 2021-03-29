@@ -25,7 +25,13 @@ const routers = new Router({
         /** ************************* 首页及其相关页路由 ***************************************** **/
         { path: '/', redirect: '/app/home' },
         ...getPageConfig()
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition && to.meta?.keepScroll) {
+            return savedPosition
+        }
+        return { x: 0, y: 0 }
+    }
 })
 
 routers.beforeEach((to, from, next) => {

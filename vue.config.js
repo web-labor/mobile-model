@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+const webpack = require('webpack')
 const DllConfig = require('./webpack.dll.config')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const { name: projectName, zh_name: zh_projectName } = require('./package.json')
@@ -40,10 +40,12 @@ module.exports = {
                 })
             )
             Object.keys(DllConfig.entry).forEach(key => {
-                config.plugins.push(new webpack.DllReferencePlugin({
-                    context: process.cwd(),
-                    manifest: require(`./public/lib/${key}-manifest.json`)
-                }))
+                config.plugins.push(
+                    new webpack.DllReferencePlugin({
+                        context: process.cwd(),
+                        manifest: require(`./public/lib/${key}-manifest.json`)
+                    })
+                )
             })
         }
     },
@@ -55,31 +57,31 @@ module.exports = {
         if (process.env.NODE_ENV !== 'test') {
             config.optimization.splitChunks({
                 cacheGroups: {
-                  common: {
-                    name: 'chunk-common', // 打包后的文件名
-                    chunks: 'initial', //
-                    minChunks: 2,
-                    maxInitialRequests: 5,
-                    minSize: 0,
-                    priority: 1,
-                    reuseExistingChunk: true
-                  },
-                  vendors: {
-                    name: 'chunk-vendors',
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'initial',
-                    priority: 2,
-                    reuseExistingChunk: true,
-                    enforce: true
-                  },
-                  elementUI: {
-                    name: 'chunk-vant-ui-vue',
-                    test: /[\\/]node_modules[\\/]vant[\\/]/,
-                    chunks: 'initial',
-                    priority: 3,
-                    reuseExistingChunk: true,
-                    enforce: true
-                  }
+                    common: {
+                        name: 'chunk-common', // 打包后的文件名
+                        chunks: 'initial', //
+                        minChunks: 2,
+                        maxInitialRequests: 5,
+                        minSize: 0,
+                        priority: 1,
+                        reuseExistingChunk: true
+                    },
+                    vendors: {
+                        name: 'chunk-vendors',
+                        test: /[\\/]node_modules[\\/]/,
+                        chunks: 'initial',
+                        priority: 2,
+                        reuseExistingChunk: true,
+                        enforce: true
+                    },
+                    elementUI: {
+                        name: 'chunk-vant-ui-vue',
+                        test: /[\\/]node_modules[\\/]vant[\\/]/,
+                        chunks: 'initial',
+                        priority: 3,
+                        reuseExistingChunk: true,
+                        enforce: true
+                    }
                 }
             })
         }

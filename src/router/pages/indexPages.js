@@ -6,6 +6,9 @@ const router = [
     {
         path: '/home',
         name: 'Home',
+        meta: {
+            keepScroll: true
+        },
         component: Home
     },
     {
