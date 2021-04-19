@@ -16,7 +16,10 @@ export default store => {
             const tt = `${d}/`
             const dd = `${config.PROJECT_NAME_EN}-vuex-${d}`
             if (type.indexOf(tt) !== -1) {
-                window.localStorage.setItem(dd, escape(JSON.stringify(state[d])))
+                window.localStorage.setItem(
+                    dd,
+                    escape(JSON.stringify(state[d]))
+                )
             }
         })
     })
